@@ -4,7 +4,7 @@
     "moduleDetection": "force",
     "baseUrl": ".",
     "module": "NodeNext",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "paths": {
       "@/*": [
         "src/*"
@@ -18,7 +18,8 @@
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true
   },
   "tsc-alias": {
     "resolveFullPaths": true
