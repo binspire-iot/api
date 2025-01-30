@@ -1,2 +1,2 @@
-export * from "./credentials.ts";
-export * from "./trashbin.ts";
+export * from "./credentials";
+export * from "./trashbin";

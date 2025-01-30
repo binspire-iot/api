@@ -3,8 +3,8 @@
     "target": "ESNext",
     "moduleDetection": "force",
     "baseUrl": ".",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "paths": {
       "@/*": [
         "src/*"
@@ -14,12 +14,11 @@
       "node"
     ],
     "strict": true,
+    "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
-    "noEmit": true
+    "skipLibCheck": true
   },
   "tsc-alias": {
     "resolveFullPaths": true
