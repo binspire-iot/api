@@ -33,4 +33,4 @@ export const insertTrashbin = createInsertSchema(trashbinsTable, {
   })
   .required();
 
-export const updateTrashbins = insertTrashbin.partial();
+export const updateTrashbin = insertTrashbin.partial();

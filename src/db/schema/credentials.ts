@@ -15,9 +15,10 @@ export const trashbinCredentials = pgTable("trashbin_credentials", {
     .$onUpdate(() => new Date()),
 });
 
-export const selectTrashbinCredential = createSelectSchema(trashbinCredentials);
+export const selectTrashbinCredentials =
+  createSelectSchema(trashbinCredentials);
 
-export const insertTrashbinCredential = createInsertSchema(
+export const insertTrashbinCredentials = createInsertSchema(
   trashbinCredentials,
   {
     username: (schema) => schema.nonempty(),
@@ -30,4 +31,4 @@ export const insertTrashbinCredential = createInsertSchema(
   })
   .required();
 
-export const updateTrashbinCredential = insertTrashbinCredential.partial();
+export const updateTrashbinCredentials = insertTrashbinCredentials.partial();

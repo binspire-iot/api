@@ -16,5 +16,6 @@ export default antfu({
     "antfu/no-top-level-await": ["off"],
     "node/prefer-global/process": ["off"],
     "style/arrow-parens": ["off"],
+    "style/operator-linebreak": ["off"],
   },
 });
