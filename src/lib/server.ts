@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import env from "@/config/env";
 import { pinoLogger } from "@/middlewares/logger";
+import log from "./pino";
 
 function setupServer() {
   const server = new Hono();
@@ -8,8 +9,10 @@ function setupServer() {
   server.use(pinoLogger());
 
   server.get("/", (c) => {
-    return c.text(`API is running on port ${env.PORT}`);
+    return c.text("Binspire API is running");
   });
+
+  log.info(`Serving is running on port ${env.PORT}`);
 
   return server;
 }
