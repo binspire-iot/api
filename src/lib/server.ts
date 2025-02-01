@@ -1,22 +1,37 @@
-import { Hono } from "hono";
-import env from "@/config/env";
 import { pinoLogger } from "@/middlewares/logger";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import type { ServerBindings } from "@/utils/types";
+import openAPI from "./open-api";
 import log from "./pino";
+import env from "@/config/env";
+import notFound from "@/handlers/not-found";
+import onError from "@/handlers/on-error";
 
-function setupServer() {
-  const server = new Hono();
+export function createRouter() {
+  return new OpenAPIHono<ServerBindings>({
+    strict: false,
+  });
+}
+
+export function createServer(port: number | undefined = env.PORT) {
+  if (!port) {
+    throw new Error("Port is not provided");
+  }
+
+  const server = createRouter();
 
   server.use(pinoLogger());
 
-  server.get("/", (c) => {
-    return c.text("Binspire API is running");
-  });
+  server.notFound(notFound);
+  server.onError(onError);
 
-  log.info(`Serving is running on port ${env.PORT}`);
+  log.info(`API is running on port ${port}`);
 
   return server;
 }
 
-const server = setupServer();
+const server = createServer();
+
+openAPI(server);
 
 export default server;
