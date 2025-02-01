@@ -6,10 +6,13 @@ import log from "./pino";
 import env from "@/config/env";
 import notFound from "@/handlers/not-found";
 import onError from "@/handlers/on-error";
+import defaultHook from "@/utils/default-hook";
+import { index } from "@/modules/index/index.route";
 
 export function createRouter() {
   return new OpenAPIHono<ServerBindings>({
     strict: false,
+    defaultHook,
   });
 }
 
@@ -33,5 +36,13 @@ export function createServer(port: number | undefined = env.PORT) {
 const server = createServer();
 
 openAPI(server);
+
+const routes = [index];
+
+routes.forEach((route) => {
+  server.route("/", route);
+});
+
+export type ServerType = (typeof routes)[number];
 
 export default server;
